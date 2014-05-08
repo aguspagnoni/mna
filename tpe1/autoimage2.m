@@ -7,6 +7,8 @@ function out = autoimage2(autoimg)
     d = col2im(M,[16,16],[512,512],'distinct'); meanimg = uint8(round(d));
    ds = double(b)-M;
    cc = cov(double(b'));
+    length(cc(1,:))
+    length(cc(:,1))
    [V,D] = eig(cc);
    % ordeno los autovalores de mayor a menor
    D = diag(D);
