@@ -7,7 +7,7 @@ function out = autoimage(autoimg)
     M = repmat(m, 1, 256)';
     ds = double(b)-M;
     cc = cov(double(b'));
-    [V,D] = eig(cc);
+    [V,D] = qr_with_shifts(cc);
     % ordeno los autovalores de mayor a menor
     D = diag(D);
     [D,i] = sort(D,'descend');
