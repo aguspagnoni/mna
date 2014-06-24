@@ -10,7 +10,7 @@ function [V,D]=qr_with_shifts(A)
       [Q,R] = qr(A - A(m,m)*eye(m));
       A = R*Q + A(m,m)*eye(m);
     end
-    Qavec(1:m, 1:m) = Qavec(1:m,1:m)*Q;
+    Qavec(1:m, 1:m) = Qavec(1:m,1:m)*Q(1:m, 1:m);
     D(m,m) = A(m,m);
     A = A(1:m-1,1:m-1);
   end
