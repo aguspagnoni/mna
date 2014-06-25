@@ -9,7 +9,7 @@ function out = autoimage2(autoimg)
    cc = cov(double(b'));
     length(cc(1,:))
     length(cc(:,1))
-   [V,D] = eig(cc);
+   [V,D] = qr_with_shifts(cc);
    % ordeno los autovalores de mayor a menor
    D = diag(D);
    [D,i] = sort(D,'descend');
