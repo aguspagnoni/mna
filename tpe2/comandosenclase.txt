@@ -1,0 +1,41 @@
+b1 = fir1(2, .3, 'low');
+[h, w] = freqz(b1, 1);
+w = w/pi;
+plot(w, abs(h));
+
+[h1 w1] = freqz(b1, 1);
+w1 = w1/pi;
+plot(w1, abs(h1));
+
+Fm = 44100;
+Fnyquist = Fm/2;
+plot(w1*Fnyquist, abs(h1));
+
+b2 = fir1(20, .3, 'low');
+[h2 w2] = freqz(b2, 1);
+w2 = w2/pi;
+plot(w1*Fnyquist, abs(h1), w2*Fnyquist, abs(h2));
+
+0.3*Fnyquist (Esta es la frecuencia en la cual se aplica el filtro)
+
+b3 = fir1(200, .3, 'low');
+[h3 w3] = freqz(b3, 1);
+w3 = w3/pi;
+plot(w1*Fnyquist, abs(h1), w2*Fnyquist, abs(h2), w3*Fnyquist, abs(h3));
+
+Ejemplo con valores random:
+
+x = randn(100000, 1);
+X = abs(fft(x));
+X = X(1:50000) (Tomo solo la mitad porque las frecuencias negativas no me interesan)
+f = Fm/100000*(0:49999) (Normalizo el vector de frecuencias)
+plot(f, X);
+semilogy(f, X);
+
+y = filter(b2, 1, x);
+Y = abs(fft(Y));
+Y = Y(1:50000);
+plot(f, X, f, Y);
+
+figure(2);
+plot(w2*Fnyquist,abs(h2)); (Aca comparo con la figure 1 y veo como se aplico el filtro)
