@@ -8,12 +8,9 @@ function equalizer(song, snapshots)
 
     [freqs dBs] = get_freq_values(fft(y(k:k_end)), Fm);
     len = length(freqs);
-
-    bands = [1:len/3, len/3+1:len*2/3, len*2/3+1:len];
-
-    low = mean(abs(dBs(bands(1))));
-    med = mean(abs(dBs(bands(2))));
-    high = mean(abs(dBs(bands(3))));
+    low = mean(abs(dBs(1:floor(len/3))));
+    med = mean(abs(dBs(floor(len/3)+1:floor(len*2/3))));
+    high = mean(abs(dBs(floor(len*2/3)+1:len)));
 
     bar([1:3], [low med high]);
 
