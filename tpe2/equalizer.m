@@ -1,14 +1,13 @@
 function equalizer(song, snapshots)
   [y Fm bps] = wavread(song);
 
-  [f d] = get_freq_values(y, Fm);
-  "width"
-  width = length(f)
-  k_end = width/snapshots;
-  for k=1:snapshots-1
+  width = length(y)/snapshots;
+  k = 1;
+  k_end = width;
+  for m=1:snapshots-1
 
     [freqs dBs] = get_freq_values(fft(y(k:k_end)), Fm);
-    len = length(freqs)
+    len = length(freqs);
 
     bands = [1:len/3, len/3+1:len*2/3, len*2/3+1:len];
 
